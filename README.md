@@ -101,4 +101,3 @@ The evaluation will conclude with a recommendation regarding whether Airbyte CLI
 **Current Phase:** Month 1 — Week 1: Fundamentals and Evaluation Planning
 
 **Status:** In Progress
-# airbyte-cli-evaluation
