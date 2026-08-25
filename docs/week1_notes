@@ -1,0 +1,139 @@
+# Week 1 — Airbyte Fundamentals
+
+## Objective
+
+Understand the fundamentals of Airbyte, its role in modern data engineering, its connector-based architecture, and the purpose of Airbyte CLI.
+
+## 1. What is Data Ingestion?
+
+Data ingestion is the process of collecting and moving data from one or more source systems into a destination system where it can be stored, processed, transformed, or analyzed.
+
+Typical sources include:
+
+* Relational databases
+* APIs
+* Files
+* SaaS applications
+* NoSQL databases
+
+Typical destinations include:
+
+* Data warehouses
+* Data lakes
+* Relational databases
+* Object storage
+
+## 2. What is Airbyte?
+
+Airbyte is an open-source data integration platform designed to move data between different source and destination systems.
+
+Airbyte uses connectors to communicate with source and destination systems.
+
+A simplified data flow is:
+
+```text
+Source -> Airbyte Connector -> Airbyte -> Destination
+```
+
+## 3. Source
+
+A source is the system from which Airbyte extracts data.
+
+Examples:
+
+* PostgreSQL
+* MySQL
+* APIs
+* GitHub
+* MongoDB
+
+## 4. Destination
+
+A destination is the system where Airbyte loads the extracted data.
+
+Examples:
+
+* PostgreSQL
+* Snowflake
+* BigQuery
+* Amazon S3
+
+## 5. Connector
+
+A connector provides the functionality required for Airbyte to communicate with a specific source or destination.
+
+Connectors typically handle tasks such as:
+
+* Authentication
+* Data extraction
+* Data loading
+* Schema discovery
+* Data synchronization
+
+## 6. Connection
+
+An Airbyte connection defines the synchronization between a configured source and destination.
+
+Conceptually:
+
+```text
+Source -> Airbyte -> Destination
+```
+
+## 7. ELT
+
+ELT stands for:
+
+```text
+Extract
+Load
+Transform
+```
+
+In a modern ELT architecture, Airbyte can be responsible for extracting and loading data, while a transformation tool such as dbt performs transformations after the data has been loaded.
+
+Example:
+
+```text
+Source -> Airbyte -> PostgreSQL -> dbt -> Transformed Data
+```
+
+## 8. Airbyte and dbt
+
+Airbyte and dbt can have complementary roles in a data pipeline.
+
+Airbyte:
+
+* Extracts data from source systems.
+* Loads data into a destination.
+
+dbt:
+
+* Transforms data.
+* Tests data quality.
+* Builds analytical models.
+
+## 9. Airbyte CLI
+
+Airbyte CLI provides a command-line interface for interacting with Airbyte functionality.
+
+The CLI is particularly relevant to this evaluation because it allows us to investigate whether Airbyte can fit into command-line-driven engineering workflows and automation.
+
+## 10. Questions to Investigate
+
+The following questions will be explored during the evaluation:
+
+* How easy is Airbyte CLI to install?
+* How easy is it to configure?
+* How are connectors managed?
+* How are synchronization jobs executed?
+* How are failures reported?
+* How are retries handled?
+* Can Airbyte CLI be automated?
+* How well does it integrate with Docker?
+* How well does it integrate with Airflow?
+* How well does it integrate with dbt?
+* How reliable are connectors?
+* How does synchronization performance change with dataset size?
+
+
