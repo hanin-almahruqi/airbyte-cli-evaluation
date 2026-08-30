@@ -1,159 +1,267 @@
 # Airbyte CLI Evaluation Criteria
 
-## Purpose
+## 1. Purpose
 
-This document defines the criteria that will be used to evaluate Airbyte CLI throughout the three months.
+The purpose of this evaluation is to assess **Airbyte CLI** as a practical data integration and ingestion tool.
 
-The criteria are intended to provide a consistent framework for comparing observations and test results and to support the final recommendation.
+The evaluation focuses on the functionality available through the CLI and how effectively it can be used to perform and manage source-to-destination data integration workflows.
 
-## 1. Setup and Installation
+---
 
-Evaluate:
+# 2. Core Evaluation Areas
 
-* Installation complexity
-* Required dependencies
-* Configuration requirements
-* Docker/local environment requirements
-* Time required to establish the initial environment
-* Clarity of setup documentation
+## 2.1 CLI Functionality
 
-## 2. CLI Usability
+### Evaluate
 
-Evaluate:
+* Available CLI commands and operations
+* Connector discovery
+* Connector inspection
+* Source configuration
+* Destination configuration
+* Connection management
+* Synchronization control
+* Status and result retrieval
+* Authentication
+* CLI input/output
 
-* Ease of learning CLI commands
-* Command structure and consistency
-* Configuration workflow
-* Ease of executing synchronization jobs
-* Ease of automation
-* Quality of command output and feedback
+### Questions
 
-## 3. Connector Availability
+* What functionality is available through the CLI?
+* Can common integration operations be performed through the CLI?
+* Can a complete integration workflow be managed through the CLI?
+* Can CLI operations be executed programmatically?
 
-Evaluate:
+---
 
-* Availability of required source connectors
-* Availability of required destination connectors
-* Connector documentation
-* Connector configuration requirements
-* Authentication options
+## 2.2 Connector Management
 
-## 4. Connector Reliability
+### Evaluate
 
-Evaluate:
+How Airbyte CLI handles connector discovery and management.
 
-* Successful synchronization rate
-* Stability during repeated executions
-* Behavior with different datasets
-* Behavior when source or destination systems experience problems
-* Frequency and severity of connector-related issues
+### Questions
 
-## 5. Data Accuracy
+* Can connectors be discovered easily?
+* Can connector capabilities be inspected?
+* Can connectors be configured through the CLI?
+* Are connector workflows consistent?
+* Are important operations unavailable through the CLI?
 
-Evaluate:
+---
+
+# 3. Integration Scenarios
+
+The evaluation will use four core scenarios.
+
+| Scenario | Source     | Destination | Purpose                       |
+| -------- | ---------- | ----------- | ----------------------------- |
+| S1       | PostgreSQL | PostgreSQL  | Baseline database integration |
+| S2       | REST API   | PostgreSQL  | API-based ingestion           |
+| S3       | CSV/JSON   | PostgreSQL  | File-based ingestion          |
+| S4       | PostgreSQL | S3/MinIO    | Object-storage integration    |
+
+
+---
+
+# 4. Source and Destination Configuration
+
+### Evaluate
+
+* Source configuration
+* Destination configuration
+* Authentication
+* Required configuration parameters
+* Connection creation
+* Configuration validation
+* Configuration changes
+
+### Questions
+
+* How easy is it to configure a source?
+* How easy is it to configure a destination?
+* Are configurations consistent across connectors?
+* Can configurations be managed effectively through the CLI?
+
+---
+
+# 5. Synchronization
+
+### Evaluate
+
+* Initial/full synchronization
+* Incremental synchronization where supported
+* New records
+* Updated records
+* Deleted records where supported
+* Multiple streams
+* Repeated synchronization
+* Schema changes
+
+### Questions
+
+* Can synchronization be triggered through the CLI?
+* Can synchronization status be retrieved?
+* How are incremental changes handled?
+* What happens when source data changes?
+* How are schema changes handled?
+
+---
+
+# 6. Data Correctness
+
+For each applicable scenario, validate:
 
 * Record counts
-* Column mapping
+* Column names
 * Data types
+* Values
 * Null values
 * Duplicate records
-* Data completeness
-* Consistency between source and destination
+* New records
+* Updated records
+* Deleted records where applicable
 
-## 6. Synchronization Performance
+### Main Question
 
-Evaluate:
+> Does the destination contain the expected data after synchronization?
 
-* Initial synchronization duration
-* Incremental synchronization duration
-* Records processed per unit of time
-* Resource consumption
-* Performance with increasing dataset sizes
+---
 
-## 7. Incremental Synchronization
+# 7. Reliability and Error Handling
 
-Evaluate:
+### Test
 
-* Support for incremental synchronization
-* Detection of new records
-* Detection of updated records
-* Handling of deleted records where applicable
-* Efficiency compared with full refreshes
+* Invalid credentials
+* Invalid configuration
+* Source unavailable
+* Destination unavailable
+* Interrupted synchronization
+* Invalid or unexpected data
 
-## 8. Error Handling and Recovery
-
-Evaluate:
+### Evaluate
 
 * Error messages
-* Failure detection
+* Failure visibility
 * Retry behavior
-* Recovery after failures
-* Partial synchronization behavior
-* Ease of troubleshooting
+* Recovery behavior
+* Manual intervention
 
-## 9. Logging and Observability
+### Main Question
 
-Evaluate:
+> Can a data engineer identify and recover from common integration failures using Airbyte CLI?
 
-* Log quality
-* Log readability
-* Availability of useful diagnostic information
-* Identification of failed operations
-* Ability to troubleshoot synchronization problems
+---
 
-## 10. Documentation
-
-Evaluate:
-
-* Installation documentation
-* CLI documentation
-* Connector documentation
-* Troubleshooting information
-* Examples
-* Community resources
-
-## 11. Automation and Integration
-
-Evaluate integration with:
-
-* Shell scripts
-* Git
-* Docker
-* CI/CD
-* Airflow
-* dbt
-* PostgreSQL
-
-## 12. Resource Utilization
+# 8. Performance
 
 Where practical, measure:
 
-* CPU usage
-* Memory usage
-* Storage usage
-* Network usage
 * Synchronization duration
+* Records processed
+* Approximate throughput
+* Resource usage
+* Full synchronization performance
+* Incremental synchronization performance
 
-## 13. Maintainability
+Performance measurements will be used to understand practical behavior rather than as formal benchmarks.
 
-Evaluate:
+---
 
-* Configuration complexity
-* Reproducibility
-* Version management
-* Upgrade process
-* Troubleshooting effort
-* Operational complexity
+# 9. Automation
 
-## Evaluation Approach
+Evaluate the ability to use Airbyte CLI in automated workflows.
 
-Each criterion will be evaluated using a combination of:
+### Test
 
-1. Documentation review
-2. Hands-on experiments
-3. Synchronization tests
-4. Performance measurements
-5. Failure/recovery tests
-6. Technical observations
+* Shell commands
+* Scripts
+* JSON input
+* JSON output
+* Environment variables
+* Exit codes
+* Non-interactive execution
+* Reproducible workflows
 
-Quantitative measurements will be recorded where practical, while qualitative observations will be documented separately.
+### Questions
+
+* Can integration workflows be automated?
+* Can CLI output be consumed programmatically?
+* Can commands be executed without manual interaction?
+* Is the CLI suitable for repeatable engineering workflows?
+
+---
+
+# 10. Usability
+
+Evaluate the practical experience of using Airbyte CLI.
+
+### Questions
+
+* Is the command structure logical?
+* Is the workflow easy to understand?
+* Are commands consistent?
+* Is configuration practical?
+* Is troubleshooting manageable?
+* Can workflows be reproduced easily?
+* Can common operations be performed efficiently?
+
+---
+
+# 11. Scenario Evaluation Template
+
+Each scenario will use the following evaluation structure:
+
+| Evaluation Item             | Result |
+| --------------------------- | ------ |
+| Connector available         |        |
+| Source configuration        |        |
+| Destination configuration   |        |
+| Connection creation         |        |
+| Initial synchronization     |        |
+| Incremental synchronization |        |
+| Data correctness            |        |
+| Schema handling             |        |
+| Error handling              |        |
+| Automation                  |        |
+| Performance                 |        |
+| CLI limitations             |        |
+| Overall result              |        |
+
+Not every evaluation item will necessarily apply to every connector.
+
+---
+
+# 12. Final Assessment
+
+The final assessment will summarize:
+
+### Strengths
+
+Capabilities that worked particularly well.
+
+### Limitations
+
+Missing functionality, difficult workflows, or practical limitations.
+
+### Reliability
+
+Observed behavior during normal and failure scenarios.
+
+### Performance
+
+Observed synchronization performance.
+
+### Automation
+
+Ability to use the CLI in repeatable and automated workflows.
+
+### Recommendation
+
+The final recommendation will be one of:
+
+* **Recommended**
+* **Recommended with limitations**
+* **Not recommended**
+
+The recommendation will be based on the evidence collected during the practical experiments.
